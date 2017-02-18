@@ -1,0 +1,35 @@
+extends layout
+
+block content
+	script(src='/bootstrap/js/bootstrap.min.js')
+	.container
+		.row
+			.col-md-12
+				nav.navbar.navbar-inverse(role='navigation')
+					a.navbar-brand(href='#') Todo List
+		.row
+			.col-md-4
+				ul.list-group
+					li.list-group-item 25.02.17 (Покупки)
+						span.badge 14
+					li.list-group-item 23.02.17 (Список дель)
+						span.badge 3
+					li.list-group-item 19.02.17 (Позвонить)
+						span.badge 8
+					li.list-group-item 15.02.17 (Оплатить счета)
+						span.badge 2
+					li.list-group-item 14.02.17 (Покупки)
+						span.badge 1
+					li.list-group-item 12.02.17 (Список дел)
+						span.badge 6
+					li.list-group-item.text-center
+						img(src='images/add.png' class='add-btn')
+			.col-md-8.text-center
+				h1='hello world'
+
+	
+		
+
+
+
+
