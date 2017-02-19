@@ -15,12 +15,12 @@ block content
 						.row
 							.col-md-9
 								a(href='#')
-									input.add-input(placeholder='Name') 							
+									input.add-input(placeholder='Name' ng-model='Iname') 							
 							.col-md-1
-								a(href='#')
+								a(href='#' ng-click='SetNewItem(Iname);')
 									img.add-ok(src='images/add-ok.png')
 							.col-md-1
-								a(href='#')
+								a(href='#' ng-click='SetNewCancel();')
 									img.add-not(src='images/add-not.png')
 					li.list-group-item(ng-repeat="item in list.items")
 						a.link-do(href='#') {{item.date}} {{item.name}}
