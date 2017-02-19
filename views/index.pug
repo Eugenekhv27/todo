@@ -23,41 +23,29 @@ block content
 								a(href='#' ng-click='SetNewCancel();')
 									img.add-not(src='images/add-not.png')
 					li.list-group-item(ng-repeat="item in list.items")
-						a.link-do(href='#') {{item.date}} {{item.name}}
+						a.link-do(href='#' ng-click="getDoes(item.id);") {{item.date}} {{item.name}} 
 						span.badge {{item.does.length}}
 					
 					li.list-group-item.text-center
 						a.link-do(href='#')
 							button.btn.btn-success.btn-add(type='button' ng-click='addItem();') Добавить
-			.col-md-8
+			.col-md-8(data-ng-init="getDoes();")
 				.panel.panel-default
 					.panel-heading
 						p=' 25.02.17 (Покупки)'
 					.panel-body
 						table.table
 
-							tbody
+							tbody(ng-repeat="item in currentDo.items")
 								tr
 									td 
-										input(type='checkbox')
-									td Купить молоко
-									td 13:07
+										input(type='checkbox' ng-checked="{{item.check}}" )
+									td.text-left {{item.name}}
+									td {{item.time}}
 									
-								tr
-									td 
-										input(type='checkbox')
-									td Купить хлеб
-									td 13:08
-								tr
-									td 
-										input(type='checkbox')
-									td Купить марковку
-									td 13:08
-								tr
-									td 
-										input(type='checkbox')
-									td Купить укроп
-									td 13:09
+
+
+
 						button.btn.btn-success.btn-add-do(type='button') Добавить задачу
 
 									
