@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/angular', express.static(__dirname + '/node_modules/angular'));
+app.use('/js', express.static(__dirname + '/public/javascripts'));
 app.use('/users', users);
 
 // catch 404 and forward to error handler
