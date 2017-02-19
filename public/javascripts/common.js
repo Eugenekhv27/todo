@@ -1,11 +1,17 @@
 var model = {
 
+
+
 	items: [
 
-	
+    {date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася"},{check: 'false', name: "Петя"},{check: 'false', name: "Марина"}]},
+    {date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася"},{check: 'false', name: "Петя"},{check: 'false', name: "Марина"}]},
+    {date: "19.02.2017",name:"Список продуктов",does:[{check: 'false', name: "Хлеб"},{check: 'false', name: "Молоко"}]}
 
-	]
-}
+    ]
+
+    }
+
 
 
 
@@ -32,7 +38,7 @@ var purchaseApp = angular.module("purchaseApp", []);
     	}
 
     	var datenow = String(datep.getDate()) + '.' + month + '.' + String(datep.getFullYear())[2] + String(datep.getFullYear())[3] ;
-    	$scope.list.items.push({ date: datenow, name: Iname, count: 0 });
+    	$scope.list.items.push({ date: datenow, name: Iname, does:[{check: 'false', name: "Хлеб"}]});
     	document.getElementsByClassName('addnewmainlist')[0].style.transition = '0.5s';
     	document.getElementsByClassName('addnewmainlist')[0].style.opacity = '0.1';
     	function setDisplay(){

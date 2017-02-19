@@ -24,7 +24,7 @@ block content
 									img.add-not(src='images/add-not.png')
 					li.list-group-item(ng-repeat="item in list.items")
 						a.link-do(href='#') {{item.date}} {{item.name}}
-						span.badge {{item.count}}
+						span.badge {{item.does.length}}
 					
 					li.list-group-item.text-center
 						a.link-do(href='#')
@@ -40,7 +40,7 @@ block content
 								tr
 									td 
 										input(type='checkbox')
-									td.mmm Купить молоко
+									td Купить молоко
 									td 13:07
 									
 								tr
