@@ -34,6 +34,16 @@ block content
 					.panel-heading
 						p=' 25.02.17 (Покупки)'
 					.panel-body
+						.row.does-add-row
+							.col-md-9
+								a(href='#')
+									input.add-input.does-inp(placeholder='Name' ng-model='DoName') 							
+							.col-md-1(ng-repeat="item in Doid.elem")
+								a(href='#' ng-click='setNewDo(item.id, DoName)')
+									img.add-ok(src='images/add-ok.png')
+							.col-md-1
+								a(href='#' ng-click='SetDoCancel();')
+									img.add-not(src='images/add-not.png')
 						table.table
 
 							tbody(ng-repeat="item in currentDo.items")
@@ -46,7 +56,7 @@ block content
 
 
 
-						button.btn.btn-success.btn-add-do(type='button') Добавить задачу
+						button.btn.btn-success.btn-add-do(type='button' ng-click="openAddDo()") Добавить задачу
 
 									
 
