@@ -9,7 +9,7 @@ block content
 					a.navbar-brand.title-name(href='#') Todo List
 
 		.row
-			.col-md-4
+			.col-md-4.left-sidebar
 				ul.list-group
 					li.list-group-item.addnewmainlist(style='display: none !important;')
 						.row
@@ -29,20 +29,24 @@ block content
 					li.list-group-item.text-center
 						a.link-do(href='#')
 							button.btn.btn-success.btn-add(type='button' ng-click='addItem();') Добавить
-			.col-md-8(data-ng-init="getDoes();")
+			.col-md-8(data-ng-init="getDoes();"  ng-if="checkAva()")
 				.panel.panel-default
 					.panel-heading
 						p=' 25.02.17 (Покупки)'
 					.panel-body
 						.row.does-add-row
-							.col-md-9
-								a(href='#')
-									input.add-input.does-inp(placeholder='Name' ng-model='DoName') 							
-							.col-md-1(ng-repeat="item in Doid.elem")
-								a(href='#' ng-click='setNewDo(item.id, DoName)')
+							
+								
+									
+							.col-md-12(ng-repeat="item in Doid.elem")
+								form
+									input.add-input.does-inp(placeholder='Name' ng-model='DoName')
+									button(ng-click='setNewDo(item.id, DoName)' style="display:none")
+							
+								a.does-but(href='#' ng-click='setNewDo(item.id, DoName)')
 									img.add-ok(src='images/add-ok.png')
-							.col-md-1
-								a(href='#' ng-click='SetDoCancel();')
+							
+								a.does-but(href='#' ng-click='SetDoCancel();')
 									img.add-not(src='images/add-not.png')
 						table.table
 
@@ -56,7 +60,21 @@ block content
 
 
 
-						button.btn.btn-success.btn-add-do(type='button' ng-click="openAddDo()") Добавить задачу
+						button.btn.btn-success.btn-add-do(type='button' ng-click="openAddDo()" ) Добавить задачу
+		.row
+			.col-md-12
+				.jumbotron
+					h1() Todo List
+					p() Управляйте вашими задачами и проектами где угодно с помощью TodoList. Дома. На работе. Онлайн. Оффлайн.
+				
+
+
+
+					
+						
+
+
+
 
 									
 

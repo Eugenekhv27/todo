@@ -15,7 +15,9 @@ body {
 
 }
 
-
+.mmss{
+	float:left;
+}
 
 
 a {
@@ -61,6 +63,9 @@ a {
 
 .does-inp{
 	margin-bottom: 10px;
+	display: inline-block;
+	float: left;
+	width: 80%;
 
 
 }
@@ -73,6 +78,12 @@ a {
 img.add-ok, img.add-not{
 	margin-top: 3px;
 	width: 20px;
+	display: inline-block;
+}
+
+
+.does-but{
+	margin-left: 15px;
 }
 
 .title-name{

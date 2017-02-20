@@ -1,12 +1,12 @@
 var model = {
 
-    ids:0,
+    ids:1,
 
 	items: [
 /*
     {id: 0,date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася",time:"13:08"},{check: 'true', name: "Петя",time:"13:07"},{check: 'true', name: "Марина",time:"13:07"}]},
-    {id: 1,date: "19.02.2017",name:"Дела",does:[{check: 'false', name: "Приготовить",time:"13:07"},{check: 'false', name: "К стоматологу в час ",time:"13:07"},{check: 'true', name: "Настроить компьютер",time:"13:07"},{check: 'false', name: "На пары",time:"13:07"}]},*/
-    {id: 0,date: " ",name:"Основные задачи",does:[{check: 'false', name: "Проснутся",time:"13:07"}]}
+    {id: 1,date: "19.02.2017",name:"Дела",does:[{check: 'false', name: "Приготовить",time:"13:07"},{check: 'false', name: "К стоматологу в час ",time:"13:07"},{check: 'true', name: "Настроить компьютер",time:"13:07"},{check: 'false', name: "На пары",time:"13:07"}]},
+    {id: 0,date: " ",name:"Основные задачи",does:[{check: 'false', name: "Проснутся",time:"13:07"}]}*/
 
     ]
 
@@ -26,6 +26,23 @@ var purchaseApp = angular.module("purchaseApp", []);
 		
     }
 
+    $scope.checkAva = function(){
+        if($scope.list.items.length == 0)
+        {
+            var elem = document.body.getElementsByClassName('left-sidebar')[0]
+            elem.classList.remove('col-md-4');
+            elem.classList.add('col-md-12');
+            return false;
+        }else{
+
+            var elem = document.body.getElementsByClassName('left-sidebar')[0]
+            if(!elem.classList.contains('col-md-4')){
+                elem.classList.remove('col-md-12');
+                    elem.classList.add('col-md-4')
+            }
+            return true;
+        }
+    }
     $scope.openAddDo = function () {
         document.getElementsByClassName('does-add-row')[0].style.display = 'block';
         document.getElementsByClassName('does-add-row')[0].style.opacity = '1';
@@ -60,7 +77,10 @@ var purchaseApp = angular.module("purchaseApp", []);
 
     	var datenow = String(datep.getDate()) + '.' + month + '.' + String(datep.getFullYear())[2] + String(datep.getFullYear())[3] ;
     	$scope.list.items.push({ id: $scope.list.ids+1, date: datenow, name: Iname, does:[{check : 'true', name : 'Для удаления этоя записи, добавьте новую', time : '00:00'}]});
+        $scope.getDoes($scope.list.ids+1);
         $scope.list.ids++;
+
+
     	document.getElementsByClassName('addnewmainlist')[0].style.transition = '0.5s';
     	document.getElementsByClassName('addnewmainlist')[0].style.opacity = '0.1';
     	function setDisplay(){
@@ -82,8 +102,22 @@ var purchaseApp = angular.module("purchaseApp", []);
     	setTimeout(setDisplay, 500);
     }
 
+    $scope.SetDoCancel = function(){
+        document.getElementsByClassName('does-add-row')[0].style.transition = '0.5s';   
+                document.getElementsByClassName('does-add-row')[0].style.opacity = '0.1';
+                function setDisplay(){
+                    document.getElementsByClassName('does-add-row')[0].style.display = 'none';       
+                }       
+                setTimeout(setDisplay,500)
+
+    }
+
+    $scope.test = function(x){
+        alert(x);
+    }
     
     $scope.setNewDo = function(iden,doName){
+        
         for (var i = 0; i < $scope.list.items.length; i++) {
 
             if($scope.list.items[i].id == iden){
@@ -112,7 +146,7 @@ var purchaseApp = angular.module("purchaseApp", []);
         };
         if(x == undefined || x==NaN || x == '' || x == 0)
         {
-            $scope.Doid.elem[0].id= 0
+            $scope.Doid.elem[0].id= 2
 
         }else{
           $scope.Doid.elem[0].id= x
