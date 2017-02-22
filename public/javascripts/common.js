@@ -100,7 +100,7 @@ var purchaseApp = angular.module("purchaseApp", []);
 
     $scope.loadPage = function(){
 
-        //showLoad();        
+        showLoad();        
         setTimeout(showContent, 2000)
         setTimeout(hideLoad, 2000)
     }
@@ -223,7 +223,10 @@ var purchaseApp = angular.module("purchaseApp", []);
         }else{
           $scope.Doid.elem[0]._id= x
 
+
         }
+
+
         var doModel = {
             items:[]
         }
@@ -233,7 +236,10 @@ var purchaseApp = angular.module("purchaseApp", []);
         {
             for (var i = 0 ; i < $scope.list.items[0].does.length; i++) {
                 $scope.currentDo.items.push({check : $scope.list.items[0].does[i].check, name : $scope.list.items[0].does[i].name, time : $scope.list.items[0].does[i].time})
+
             };
+
+            $scope.nameCurrentList =  $scope.list.items[0].name;
             
             
             
@@ -253,6 +259,15 @@ var purchaseApp = angular.module("purchaseApp", []);
                 }
                 
             }
+            for(var a = 0; a < $scope.list.items.length; a++ )
+            {
+
+                if($scope.list.items[a]._id == x )
+                {
+                    $scope.nameCurrentList =  $scope.list.items[a].name;
+                }
+            }
+            
 
         }
 
