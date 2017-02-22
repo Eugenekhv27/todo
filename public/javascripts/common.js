@@ -3,10 +3,6 @@ var model = {
     ids:1,
 
 	items: [
-/*
-    {id: 2,date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася",time:"13:08"},{check: 'true', name: "Петя",time:"13:07"},{check: 'true', name: "Марина",time:"13:07"}]},
-    {id: 3,date: "19.02.2017",name:"Дела",does:[{check: 'false', name: "Приготовить",time:"13:07"},{check: 'false', name: "К стоматологу в час ",time:"13:07"},{check: 'true', name: "Настроить компьютер",time:"13:07"},{check: 'false', name: "На пары",time:"13:07"}]},
-    {id: 4,date: " ",name:"Основные задачи",does:[{check: 'false', name: "Проснутся",time:"13:07"}]}*/
 
     ]
 
@@ -16,10 +12,46 @@ var model = {
 
 
 var purchaseApp = angular.module("purchaseApp", []);
-    purchaseApp.controller("purchaseController", function ($scope) {
+    purchaseApp.controller("purchaseController", function ($scope, $http) {
+
+
+ 
+        
+        $http.get('http://127.0.0.1:5984/todo_model/_all_docs').then(function(response){
+                
+                $scope.model_len = response.data.rows.length
+
+                for (var i = 0; i < $scope.model_len; i++) {
+                    var p = i +2;
+                    
+                    $http.get('http://127.0.0.1:5984/todo_model/' + p ).then(function(data){
+                        model.items.push(data.data)
+
+                        
+                        
+                    });
+                        
+                    
+                }
+
+                
+
+        });      
+    
         
     $scope.list = model;
+
 	$scope.addItem = function () {
+        var max_id = 0;
+        for (var i = 0; i < $scope.list.items.length; i++) {
+            
+            if($scope.list.items[i]._id > 0){
+                max_id = $scope.list.items[i]._id;
+            }
+
+            console.log(max_id);
+        };
+        
 		document.getElementsByClassName('addnewmainlist')[0].style.display = 'block';		
 		document.getElementsByClassName('addnewmainlist')[0].style.opacity = '1';
 		
@@ -44,8 +76,11 @@ var purchaseApp = angular.module("purchaseApp", []);
             }
             return true;
         }
+
     }
 
+
+    
     function showLoad()
     {
         document.getElementById("loader").style.display = 'block';
@@ -65,17 +100,10 @@ var purchaseApp = angular.module("purchaseApp", []);
 
     $scope.loadPage = function(){
 
-        showLoad();
+        //showLoad();        
         setTimeout(showContent, 2000)
         setTimeout(hideLoad, 2000)
     }
-
-    
-
-    
-
-
-
 
     $scope.openAddDo = function () {
         document.getElementsByClassName('does-add-row')[0].style.display = 'block';
@@ -85,7 +113,7 @@ var purchaseApp = angular.module("purchaseApp", []);
 
     
 
-    ;
+    
     $scope.getTime = function(){
         datee = new Date();
         var minut = String(datee.getMinutes());
@@ -110,7 +138,7 @@ var purchaseApp = angular.module("purchaseApp", []);
     	}
 
     	var datenow = String(datep.getDate()) + '.' + month + '.' + String(datep.getFullYear())[2] + String(datep.getFullYear())[3] ;
-    	$scope.list.items.push({ id: $scope.list.ids+1, date: datenow, name: Iname, does:[{check : 'true', name : 'Для удаления этоя записи, добавьте новую', time : '00:00'}]});
+    	$scope.list.items.push({ _id: $scope.list.ids+1, date: datenow, name: Iname, does:[{check : 'true', name : 'Для удаления этоя записи, добавьте новую', time : '00:00'}]});
         $scope.getDoes($scope.list.ids+1);
         $scope.list.ids++;
 
@@ -155,7 +183,7 @@ var purchaseApp = angular.module("purchaseApp", []);
         
         for (var i = 0; i < $scope.list.items.length; i++) {
 
-            if($scope.list.items[i].id == iden){
+            if($scope.list.items[i]._id == iden){
                 
                 $scope.list.items[i].does.push({check: 'false', name: doName,time:$scope.getTime()})
                 if($scope.list.items[i].does[0].name == "Для удаления этоя записи, добавьте новую")
@@ -179,16 +207,21 @@ var purchaseApp = angular.module("purchaseApp", []);
     }
 
     $scope.getDoes = function(x){
+
+        
+        
+        
+        
         
         $scope.Doid = {
-            elem: [{id : 0}]
+            elem: [{_id : 0}]
         };
         if(x == undefined || x==NaN || x == '' || x == 0)
         {
-            $scope.Doid.elem[0].id= 2
+            $scope.Doid.elem[0]._id= 2
 
         }else{
-          $scope.Doid.elem[0].id= x
+          $scope.Doid.elem[0]._id= x
 
         }
         var doModel = {
@@ -207,7 +240,7 @@ var purchaseApp = angular.module("purchaseApp", []);
         }else{
             for (var i = 0 ; i < $scope.list.items.length; i++) {
                 
-                if( $scope.list.items[i].id == x)
+                if( $scope.list.items[i]._id == x)
                 {
                     for (var j = 0; j < $scope.list.items[i].does.length; j++) {
                         $scope.currentDo.items.push({check : $scope.list.items[i].does[j].check, name : $scope.list.items[i].does[j].name, time : $scope.list.items[i].does[j].time})
@@ -222,6 +255,8 @@ var purchaseApp = angular.module("purchaseApp", []);
             }
 
         }
+
+        
     }
 });
 

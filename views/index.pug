@@ -9,7 +9,7 @@ block content
 		.row
 			.col-md-12
 				nav.navbar.navbar-inverse(role='navigation')
-					a.navbar-brand.title-name(href='#') Todo List
+					a.navbar-brand.title-name(href='#' ng-click="getJN();") Todo List
 
 		.row
 			.col-md-4.left-sidebar
@@ -26,7 +26,7 @@ block content
 								a(href='#' ng-click='SetNewCancel();')
 									img.add-not(src='images/add-not.png')
 					li.list-group-item(ng-repeat="item in list.items")
-						a.link-do(href='#' ng-click="getDoes(item.id);") {{item.date}} {{item.name}} 
+						a.link-do(href='#' ng-click="getDoes(item._id);") {{item.date}} {{item.name}} 
 						span.badge {{item.does.length}}
 					
 					li.list-group-item.text-center
@@ -44,9 +44,9 @@ block content
 							.col-md-12(ng-repeat="item in Doid.elem")
 								form
 									input.add-input.does-inp(placeholder='Name' ng-model='DoName')
-									button(ng-click='setNewDo(item.id, DoName)' style="display:none")
+									button(ng-click='setNewDo(item._id, DoName)' style="display:none")
 							
-								a.does-but(href='#' ng-click='setNewDo(item.id, DoName)')
+								a.does-but(href='#' ng-click='setNewDo(item._id, DoName)')
 									img.add-ok(src='images/add-ok.png')
 							
 								a.does-but(href='#' ng-click='SetDoCancel();')
