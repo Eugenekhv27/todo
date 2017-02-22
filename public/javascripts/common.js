@@ -4,9 +4,9 @@ var model = {
 
 	items: [
 /*
-    {id: 0,date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася",time:"13:08"},{check: 'true', name: "Петя",time:"13:07"},{check: 'true', name: "Марина",time:"13:07"}]},
-    {id: 1,date: "19.02.2017",name:"Дела",does:[{check: 'false', name: "Приготовить",time:"13:07"},{check: 'false', name: "К стоматологу в час ",time:"13:07"},{check: 'true', name: "Настроить компьютер",time:"13:07"},{check: 'false', name: "На пары",time:"13:07"}]},
-    {id: 0,date: " ",name:"Основные задачи",does:[{check: 'false', name: "Проснутся",time:"13:07"}]}*/
+    {id: 2,date: "19.02.2017",name:"Позвонить",does:[{check: 'false', name: "Вася",time:"13:08"},{check: 'true', name: "Петя",time:"13:07"},{check: 'true', name: "Марина",time:"13:07"}]},
+    {id: 3,date: "19.02.2017",name:"Дела",does:[{check: 'false', name: "Приготовить",time:"13:07"},{check: 'false', name: "К стоматологу в час ",time:"13:07"},{check: 'true', name: "Настроить компьютер",time:"13:07"},{check: 'false', name: "На пары",time:"13:07"}]},
+    {id: 4,date: " ",name:"Основные задачи",does:[{check: 'false', name: "Проснутся",time:"13:07"}]}*/
 
     ]
 
@@ -17,6 +17,7 @@ var model = {
 
 var purchaseApp = angular.module("purchaseApp", []);
     purchaseApp.controller("purchaseController", function ($scope) {
+        
     $scope.list = model;
 	$scope.addItem = function () {
 		document.getElementsByClassName('addnewmainlist')[0].style.display = 'block';		
@@ -25,6 +26,7 @@ var purchaseApp = angular.module("purchaseApp", []);
 		
 		
     }
+
 
     $scope.checkAva = function(){
         if($scope.list.items.length == 0)
@@ -43,6 +45,38 @@ var purchaseApp = angular.module("purchaseApp", []);
             return true;
         }
     }
+
+    function showLoad()
+    {
+        document.getElementById("loader").style.display = 'block';
+    }
+    function showContent()
+    {
+        document.getElementsByClassName("maincont")[0].style.display = 'block';
+    }
+    function hideLoad()
+    {
+        document.getElementById("loader").style.display = 'none';
+    }
+    function hideContent()
+    {
+        document.getElementsByClassName("maincont")[0].style.display = 'none';
+    }
+
+    $scope.loadPage = function(){
+
+        showLoad();
+        setTimeout(showContent, 2000)
+        setTimeout(hideLoad, 2000)
+    }
+
+    
+
+    
+
+
+
+
     $scope.openAddDo = function () {
         document.getElementsByClassName('does-add-row')[0].style.display = 'block';
         document.getElementsByClassName('does-add-row')[0].style.opacity = '1';
@@ -54,11 +88,11 @@ var purchaseApp = angular.module("purchaseApp", []);
     ;
     $scope.getTime = function(){
         datee = new Date();
-        var minut = '';
+        var minut = String(datee.getMinutes());
         if(String(datee.getMinutes()).lenght == 1)
         {
-           minut = '0' + String(datee.getMinutes())
-        }else{
+           minut = '0' +  String(datee.getMinutes())
+        }else if(String(datee.getMinutes()).lenght == 2){
             minut = String(datee.getMinutes())
         }
         return String(datee.getHours()) + ':' + minut 
@@ -117,12 +151,17 @@ var purchaseApp = angular.module("purchaseApp", []);
     }
     
     $scope.setNewDo = function(iden,doName){
+
         
         for (var i = 0; i < $scope.list.items.length; i++) {
 
             if($scope.list.items[i].id == iden){
                 
                 $scope.list.items[i].does.push({check: 'false', name: doName,time:$scope.getTime()})
+                if($scope.list.items[i].does[0].name == "Для удаления этоя записи, добавьте новую")
+                {
+                    $scope.list.items[i].does.splice(0,1);
+                }
                 console.log($scope.list.items[i].does)
                 $scope.getDoes(iden);
                 document.getElementsByClassName('does-add-row')[0].style.transition = '0.5s';   

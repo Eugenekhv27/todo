@@ -1,8 +1,11 @@
 extends layout
 
 block content
+
+	#loader
+		.cssload-box-loading
 	
-	.container
+	.container.maincont(onload="setTimeout(delLoad(),5000)")
 		.row
 			.col-md-12
 				nav.navbar.navbar-inverse(role='navigation')

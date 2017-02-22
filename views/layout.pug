@@ -5,7 +5,7 @@ html(ng-app="purchaseApp")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 
-  body(ng-controller="purchaseController")
+  body(ng-controller="purchaseController" data-ng-init="loadPage();")
     block content
   script(src='/bootstrap/js/bootstrap.min.js')
   script(src="/angular/angular.min.js")
