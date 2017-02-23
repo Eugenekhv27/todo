@@ -59,6 +59,17 @@ var purchaseApp = angular.module("purchaseApp", []);
 		
     }
 
+    $scope.getJN = function(){
+
+        $http.put('http://127.0.0.1:5984/todo_model/2 "{ "name" : "1", "_rev":"6-0e2e9cb6aff8eabe6f307b986cf5fe13"}" ').then(function(data){
+                    console.log("successfull")                
+
+                        
+                        
+                    });
+
+    }
+
 
     $scope.checkAva = function(){
         if($scope.list.items.length == 0)

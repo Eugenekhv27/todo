@@ -89,11 +89,15 @@ img.add-ok, img.add-not{
 .title-name{
 	font-family: 'Conv_tagirctt_[allfont.ru]';
 	margin-top: 5px;
-	font-size: 30px !important;
+	font-size: 25px !important;
 	letter-spacing: 5px;
 	color: #FFF !important;
 }
 
+
+button.save{
+	margin-right: 35px;
+}
 
 .maincont{
 	display: none;
