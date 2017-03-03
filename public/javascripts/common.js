@@ -1,6 +1,6 @@
 var model = {
 
-    ids:0,
+    ids:2,
 
 	items: [
 
@@ -284,8 +284,8 @@ var purchaseApp = angular.module("purchaseApp", []);
     $scope.saveAll = function(){
         $.couch.urlPrefix = "http://localhost:5984";
         for(var i = 0; i < $scope.list.items.length; i++){
-            if($scope.list.items[i].new == 1){
-                console.log($scope.list.items[i])
+            
+                
                 var doc = $scope.list.items[i];
                 doc._id = String(doc._id);
 
@@ -302,7 +302,7 @@ var purchaseApp = angular.module("purchaseApp", []);
 
 
 
-            }
+            
         }
     }
 });
@@ -310,25 +310,3 @@ var purchaseApp = angular.module("purchaseApp", []);
 
 
 
-var doca = {
-     _id: "6",
-     date: "11.11.11",
-     name: "Документ сохранен!!",
-     does:[
-            {
-                check : 'true',
-                name : 'Писосина', 
-                time : '00:00'
-            }
-        ]
-}
-console.log(doca)
-/*
-$.couch.db("todo_model").saveDoc(doc, {
-    success: function(data) {
-        console.log(data);
-    },
-    error: function(status) {
-        console.log(status);
-    }
-});*/
