@@ -27,7 +27,7 @@ var purchaseApp = angular.module("purchaseApp", []);
                 $scope.model_len = response.data.rows.length
 
                 for (var i = 0; i < $scope.model_len; i++) {
-                    var p = i +2;
+                    var p = response.data.rows[i].id
                     
                     $http.get('http://127.0.0.1:5984/todo_model/' + p ).then(function(data){
                         model.items.push(data.data)
@@ -64,16 +64,6 @@ var purchaseApp = angular.module("purchaseApp", []);
 		
     }
 
-    $scope.getJN = function(){
-
-        $http.put('http://127.0.0.1:5984/todo_model/2 "{ "name" : "1", "_rev":"6-0e2e9cb6aff8eabe6f307b986cf5fe13"}" ').then(function(data){
-                    console.log("successfull")                
-
-                        
-                        
-                    });
-
-    }
 
 
     $scope.checkAva = function(){
@@ -154,7 +144,7 @@ var purchaseApp = angular.module("purchaseApp", []);
     	}
 
     	var datenow = String(datep.getDate()) + '.' + month + '.' + String(datep.getFullYear())[2] + String(datep.getFullYear())[3] ;
-    	$scope.list.items.push({ _id: $scope.list.ids+1, date: datenow, name: Iname, does:[{check : 'true', name : 'Для удаления этоя записи, добавьте новую', time : '00:00'}]});
+    	$scope.list.items.push({ _id: $scope.list.ids+1, date: datenow, name: Iname, new:1, does:[{check : 'true', name : 'Для удаления этоя записи, добавьте новую', time : '00:00'}]});
         $scope.getDoes($scope.list.ids+1);
         $scope.list.ids++;
 
@@ -289,12 +279,38 @@ var purchaseApp = angular.module("purchaseApp", []);
 
         
     }
+
+
+    $scope.saveAll = function(){
+        $.couch.urlPrefix = "http://localhost:5984";
+        for(var i = 0; i < $scope.list.items.length; i++){
+            if($scope.list.items[i].new == 1){
+                console.log($scope.list.items[i])
+                var doc = $scope.list.items[i];
+                doc._id = String(doc._id);
+
+            $.couch.db("todo_model").saveDoc(doc, {
+                    success: function(data) {
+                        console.log(data);
+                        },
+                    error: function(status) {
+                        console.log(status);
+                        }
 });
 
 
 
-$.couch.urlPrefix = "http://localhost:5984";
-var doc = {
+
+
+            }
+        }
+    }
+});
+
+
+
+
+var doca = {
      _id: "6",
      date: "11.11.11",
      name: "Документ сохранен!!",
@@ -306,7 +322,9 @@ var doc = {
             }
         ]
 }
-/*$.couch.db("todo_model").saveDoc(doc, {
+console.log(doca)
+/*
+$.couch.db("todo_model").saveDoc(doc, {
     success: function(data) {
         console.log(data);
     },
