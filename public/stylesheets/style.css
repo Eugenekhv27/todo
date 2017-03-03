@@ -108,6 +108,11 @@ button.save{
 	display: none;
 }
 
+.saveInfo{
+	display: none;
+	transition: 0.5s all;
+}
+
 
 
 .cssload-box-loading {

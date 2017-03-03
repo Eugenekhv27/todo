@@ -1,6 +1,6 @@
 var model = {
 
-    ids:2,
+    ids:0,
 
 	items: [
 
@@ -52,6 +52,7 @@ var purchaseApp = angular.module("purchaseApp", []);
             
             if($scope.list.items[i]._id > 0){
                 max_id = $scope.list.items[i]._id;
+                model.ids = max_id;
             }
 
             console.log(max_id);
@@ -282,6 +283,24 @@ var purchaseApp = angular.module("purchaseApp", []);
 
 
     $scope.saveAll = function(){
+        var elem = document.getElementsByClassName("saveInfo")[0];
+        elem.style.transition = '1.0s';
+        elem.style.display = 'block';        
+        setTimeout(timeInfo, 5000);
+
+        function timeInfo(){
+            
+            elem.style.opacity = '0.1';
+            setTimeout(aa, 1000)
+            function aa(){
+                elem.style.display = 'none';
+            }    
+            
+
+
+        }
+        
+        
         $.couch.urlPrefix = "http://localhost:5984";
         for(var i = 0; i < $scope.list.items.length; i++){
             
