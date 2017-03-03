@@ -294,6 +294,7 @@ var purchaseApp = angular.module("purchaseApp", []);
             setTimeout(aa, 1000)
             function aa(){
                 elem.style.display = 'none';
+                elem.style.opacity = '1';
             }    
             
 
