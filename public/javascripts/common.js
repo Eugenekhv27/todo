@@ -1,6 +1,6 @@
 var model = {
 
-    ids:1,
+    ids:0,
 
 	items: [
 
@@ -9,6 +9,11 @@ var model = {
     }
 
 
+
+/*setTimeout(rel, 5000);
+function rel(){
+    location.reload();
+}*/
 
 
 var purchaseApp = angular.module("purchaseApp", []);
@@ -288,3 +293,24 @@ var purchaseApp = angular.module("purchaseApp", []);
 
 
 
+$.couch.urlPrefix = "http://localhost:5984";
+var doc = {
+     _id: "6",
+     date: "11.11.11",
+     name: "Документ сохранен!!",
+     does:[
+            {
+                check : 'true',
+                name : 'Писосина', 
+                time : '00:00'
+            }
+        ]
+}
+/*$.couch.db("todo_model").saveDoc(doc, {
+    success: function(data) {
+        console.log(data);
+    },
+    error: function(status) {
+        console.log(status);
+    }
+});*/
