@@ -1,0 +1,23 @@
+var http = require('http');
+function CurrencyController(){
+
+	/*  resources.finance.ua/ru/public/currency-cash.json */
+
+	var options = {
+		host: 'http://resources.finance.ua',
+		path: '/ru/public/currency-cash.json'
+	};
+
+	http.get(options, function(resp){
+		var str = "";
+		resp.on('data', function(chunk){
+			str += chunk;
+
+		});
+		resp.on("end", function(){
+			console.log(JSON.parse(str))
+		})
+	}).on("error",function(e){
+		console.log("Got error:" +e.message)
+	})
+}

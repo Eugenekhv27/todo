@@ -58,7 +58,7 @@ block content
 							tbody(ng-repeat="item in currentDo.items")
 								tr
 									td 
-										input(type='checkbox' ng-checked="{{item.check}}" )
+										input(type='checkbox' ng-checked="{{item.check}}" ng-click="test(item.name);" )
 									td.text-left {{item.name}}
 									td {{item.time}}
 									

@@ -1,0 +1,28 @@
+function Currency(){
+	var name, date, value;
+
+	function getName(){
+		return name;
+	}
+
+	function getDate(){
+		return date;
+	}
+	function getValue(){
+		return value;
+	}
+
+	function setName(name){
+		name = this.name;
+	}
+
+	function setDate(date){
+		date = this.date;
+	}
+
+	function setValue(value){
+		value = this.value;
+	}
+}
+
+
