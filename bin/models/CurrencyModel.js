@@ -1,29 +1,15 @@
-exports.CurrencyModel = function(name2,value2,date2){
-	var name = name2, date = date2, value = value2;
+ exports.CurrencyModel = function(){
+	
+
+	var model = []
 	
 
 
-	this.getName = function(){
-		return name;
+	this.pushValues = function(nameset,valueset,dateset){
+		model.push({name: nameset, value:valueset, date:dateset})
 	}
-
-	this.getDate = function(){
-		return date;
-	}
-	this.getValue = function(){
-		return value;
-	}
-
-	function setName(name1){
-		name = name1;
-	}
-
-	function setDate(date1){
-		date = date1;
-	}
-
-	function setValue(value1){
-		value = value1;
+	this.getValues = function(){
+		return JSON.stringify(model)
 	}
 	
 }

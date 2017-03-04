@@ -1,6 +1,6 @@
 var http = require('http');
 var c = require('../models/CurrencyModel')
-exports.CurrencyController = function(){
+exports.CurrencyController = function(sendCurrency){
 
 	
 
@@ -16,18 +16,23 @@ exports.CurrencyController = function(){
 
 		});
 		resp.on("end", function(){
-			var response = JSON.parse(str)
-			//console.log(response.organizations[0].currencies)
-			var arra = ["EUR", "RUR", "USD"];
-			var objC = response.organizations[0].currencies[arra[0]];
-			var model = new c.CurrencyModel(arra[0], objC.ask, new Date().toLocaleString());
-			console.log(model.getName())
-			console.log(model.getDate())
-			console.log(model.getValue())
+			var response = JSON.parse(str)			
+			var arra = ["EUR", "RUB", "USD"];
+			var model = new c.CurrencyModel();
+			for (var i = 0; i < arra.length; i++) {
+				model.pushValues(arra[i], response.organizations[0].currencies[arra[i]].ask, new Date().toLocaleString() ) 				
+			}
+			
+			var res = model.getValues();
+			console.log(res)
+			
+			sendCurrency(res);
+
 		})
 	}).on("error",function(e){
 		console.log("Got error:" +e.message)
 	})
 
+	
 
 }

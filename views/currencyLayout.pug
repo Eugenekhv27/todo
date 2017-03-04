@@ -1,14 +1,12 @@
 doctype html
-html(ng-app="purchaseApp")
+html(ng-app="currencyApp")
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
 
-  body(ng-controller="purchaseController" data-ng-init="loadPage();")
+  body(ng-controller="currencyController" )
     block content
   script(src='/bootstrap/js/bootstrap.min.js')
   script(src="/angular/angular.min.js")
-  script(src='/js/jquery.min.js')
-  script(src='/js/jquery.couch.js')
-  script(src='/js/common.js')
+  script(src='/js/currencyCommon.js')

@@ -1,0 +1,33 @@
+extends currencyLayout
+
+block content
+
+
+	.container
+		.row
+			.col-md-12
+				table.table
+					thead
+						tr
+							th Имя валюты
+							th Дата
+							th Курс
+					tbody
+						tr(ng-repeat="values in currencyRes.data")
+							th {{values.name}}
+							th {{values.date}}
+							th {{values.value}}
+				#floatBarsG(ng-hide="check_l()")
+					#floatBarsG_1.floatBarsG
+					#floatBarsG_2.floatBarsG
+					#floatBarsG_3.floatBarsG
+					#floatBarsG_4.floatBarsG
+					#floatBarsG_5.floatBarsG
+					#floatBarsG_6.floatBarsG
+					#floatBarsG_7.floatBarsG
+					#floatBarsG_8.floatBarsG
+
+					
+				
+
+
