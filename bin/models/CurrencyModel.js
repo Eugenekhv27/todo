@@ -1,16 +1,16 @@
 exports.CurrencyModel = function(name2,value2,date2){
 	var name = name2, date = date2, value = value2;
-	console.log(name)
+	
 
 
-	function getName(){
+	this.getName = function(){
 		return name;
 	}
 
-	function getDate(){
+	this.getDate = function(){
 		return date;
 	}
-	function getValue(){
+	this.getValue = function(){
 		return value;
 	}
 
