@@ -1,11 +1,10 @@
 exports.CurrencyModel = function(name2,value2,date2){
-	var name, date, valuee;
-	console.log(name2)
+	var name = name2, date = date2, value = value2;
+	console.log(name)
 
 
-
-	getName = function(){
-		return sefl;
+	function getName(){
+		return name;
 	}
 
 	function getDate(){
@@ -15,18 +14,18 @@ exports.CurrencyModel = function(name2,value2,date2){
 		return value;
 	}
 
-	function setName(name){
-		name = name;
+	function setName(name1){
+		name = name1;
 	}
 
-	function setDate(date){
-		date = date;
+	function setDate(date1){
+		date = date1;
 	}
 
-	function setValue(value){
-		value = value;
+	function setValue(value1){
+		value = value1;
 	}
-	return this;
+	
 }
 
 
